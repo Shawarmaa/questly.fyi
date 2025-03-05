@@ -1,0 +1,69 @@
+# ==============================
+# 🌐 Node.js / Next.js
+# ==============================
+node_modules/
+.next/
+.out/
+.env.local  # VERY IMPORTANT - do not commit sensitive info
+.pnp/
+.pnp.*
+
+# Yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# Testing
+/coverage
+
+# Vercel Deployment
+.vercel/
+
+# Debugging Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# ==============================
+# ☕ Java / Spring Boot
+# ==============================
+target/
+*.class
+*.iml
+.mvn/
+
+# Build artifacts (frontend and backend) - adjust if needed
+dist/
+build/
+*.war # common for spring boot deployment
+*.jar # common for spring boot deployment
+
+# ==============================
+# 🖥️ IDE-Specific Files
+# ==============================
+# IntelliJ IDEA
+.idea/
+out/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# ==============================
+# 🖥️ System / OS-Specific Files
+# ==============================
+.DS_Store
+*.log
+*.pem
+
+# Default ignored files
+/shelf/
+/workspace.xml

@@ -1,0 +1,26 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"  # Expose the Next.js app on port 3000
+    depends_on:
+      - backend  # Frontend depends on the backend service
+    environment:
+      - NEXT_PUBLIC_SUPABASE_URL=https://ztntxvjtcopkrojrjrjn.supabase.co
+      - NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp0bnR4dmp0Y29wa3JvanJqcmpuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDAxMzc2OTgsImV4cCI6MjA1NTcxMzY5OH0.X2fybWBIw-0mGF-guZnjNxcKdMA3rjpts1wPjo4NGRY
+      # Add other frontend environment variables here if needed
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"  # Expose Spring Boot on port 8080
+    environment:
+      - SUPABASE_URL=https://ztntxvjtcopkrojrjrjn.supabase.co
+      - SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp0bnR4dmp0Y29wa3JvanJqcmpuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDAxMzc2OTgsImV4cCI6MjA1NTcxMzY5OH0.X2fybWBIw-0mGF-guZnjNxcKdMA3rjpts1wPjo4NGRY
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:pukzyz-0mybzE-qamjam@db.ztntxvjtcopkrojrjrjn.supabase.co:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=pukzyz-0mybzE-qamjam
