@@ -1,37 +1,37 @@
-# Use an official Node.js runtime as a parent image
+# Stage 1: Build the Next.js app
 FROM node:18-alpine AS builder
 
-# Set the working directory in the container
+# Set working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json (if available)
+# Copy package.json and lock file
 COPY package*.json ./
 
-# Install app dependencies
+# Install dependencies
 RUN npm install --legacy-peer-deps
 
-# Copy all source code
+# Copy application files
 COPY . .
 
-# Build the Next.js app for production
+# Build Next.js app
 RUN npm run build
 
-# Serve the app using a lightweight web server (e.g., Nginx or node server)
+# Stage 2: Run the app
 FROM node:18-alpine
 
-# Set the working directory in the container
+# Set working directory
 WORKDIR /app
 
-# Copy the build output from the builder stage
+# Copy built files from the builder stage
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/package.json ./package.json
 
-# Install production dependencies
-RUN npm install --production --legacy-peer-deps
+# Install all dependencies (not just production)
+RUN npm install --legacy-peer-deps
 
-# Expose port 3000 (or the port your Next.js app uses)
+# Expose port
 EXPOSE 3000
 
-# Set the command to start the Next.js app
-CMD ["npm", "start"]
+# Start the Next.js production server
+CMD ["npm", "run", "start"]
